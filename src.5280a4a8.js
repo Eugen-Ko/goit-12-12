@@ -64,7 +64,9 @@ module.exports={version:"0.24.0"};
 module.exports=require("./lib/axios");
 },{"./lib/axios":"nUiQ"}],"AwsQ":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getWeatherByCoords=void 0;var e=t(require("axios"));function t(e){return e&&e.__esModule?e:{default:e}}e.default.defaults.baseURL="https://api.openweathermap.org";const a=async(t,a)=>{const r=`/data/2.5/weather?lat=${t}&lon=${a}&appid=5c8dab899c73e9fec8517804e94f0209&units=metric`;return await(0,e.default)(r)};exports.getWeatherByCoords=a;
-},{"axios":"dZBD"}],"Focm":[function(require,module,exports) {
-"use strict";require("./sass/main.scss");var o=require("./js/getWeatherByCoords");let e=0,t=0;navigator.geolocation&&navigator.geolocation.getCurrentPosition(s=>{console.log(s),e=s.coords.longitude,t=s.coords.latitude,(0,o.getWeatherByCoords)(t,e).then(o=>console.log(o)),console.log(`lat ${t}`,`long ${e}`)});
-},{"./sass/main.scss":"clu1","./js/getWeatherByCoords":"AwsQ"}]},{},["Focm"], null)
-//# sourceMappingURL=/goit-12-12/src.dc009cb3.js.map
+},{"axios":"dZBD"}],"qJUB":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getRefs=void 0;const e=()=>({temperDegree:document.querySelector(".temperature-degree"),locationTimeZone:document.querySelector(".location-timezone"),weatherDescr:document.querySelector(".temperature-description"),weatherIcon:document.querySelector(".icon")});exports.getRefs=e;
+},{}],"Focm":[function(require,module,exports) {
+"use strict";require("./sass/main.scss");var e=require("./js/getWeatherByCoords"),t=require("./js/getRefs");const o=(0,t.getRefs)();o.temperDegree;let n=0,r=0;function a(e,t,n){o.temperDegree.textContent=Math.round(n.temp),o.locationTimeZone.textContent=t,o.weatherDescr.textContent=e[0].main,o.weatherIcon.src=`http://openweathermap.org/img/wn/${e[0].icon}@2x.png`}navigator.geolocation&&navigator.geolocation.getCurrentPosition(t=>{n=t.coords.longitude,r=t.coords.latitude,(0,e.getWeatherByCoords)(r,n).then(({data:e})=>{const{weather:t,main:o,name:n}=e;a(t,n,o)})});
+},{"./sass/main.scss":"clu1","./js/getWeatherByCoords":"AwsQ","./js/getRefs":"qJUB"}]},{},["Focm"], null)
+//# sourceMappingURL=/goit-12-12/src.5280a4a8.js.map
