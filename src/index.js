@@ -2,6 +2,10 @@ import './sass/main.scss';
 import './js/getWeatherByCoords';
 import { getWeatherByCoords } from './js/getWeatherByCoords'
 import { getRefs } from './js/getRefs'
+import { getPositionByCoords } from './js/getPositionByCords'
+import { searcheImageByPlace } from './js/searchImageByPlace';
+
+
 
 const refs = getRefs()
 refs.temperDegree
@@ -29,6 +33,24 @@ if (navigator.geolocation) {
  
        });
   
+    getPositionByCoords(lat, long).then(({ data }) => {
+      const places = data.results[0].components.city
+      console.log(places)
+
+      searcheImageByPlace(places).then(setBackgraund)
+    })
+
   })
+}
+
+function setBackgraund({data}) {
+  console.log(data)
+  const randomIntegerFromInterval = (min, max) => {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      };
+      const randomImg = randomIntegerFromInterval(0, data.hits.length - 1);
+      document.body.style = `background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9)),
+  url('${data.hits[randomImg].largeImageURL}') center fixed; background-size: cover;`;
+console.log(randomImg)
 }
 
