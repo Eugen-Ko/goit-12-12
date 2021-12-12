@@ -1,3 +1,8 @@
+@charset "UTF-8";
+/*
+ * Главный файл стилей.
+ * Все паршалы подключаются сюда.
+ */
 *,
 *::before,
 *::after {
@@ -5,16 +10,17 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
-  background: linear-gradient(rgb(47, 150, 163), rgb(48, 62, 143));
+  background: linear-gradient(#2f96a3, #303e8f);
 }
+
 .container {
   height: 100vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  // background: linear-gradient(rgb(47, 150, 163), rgb(48, 62, 143));
   font-family: sans-serif;
   color: whitesmoke;
 }
@@ -27,6 +33,7 @@ body {
   justify-content: space-around;
   align-items: center;
 }
+
 .temperature {
   flex-direction: column;
 }
@@ -41,6 +48,7 @@ body {
   margin-left: 10px;
   font-size: 30px;
 }
+
 .digree-box h2 {
   font-size: 40px;
 }
@@ -57,3 +65,5 @@ body {
   font-weight: 400;
   padding-top: 26 px;
 }
+
+/*# sourceMappingURL=/src.e31bb0bc.css.map */

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заголовок страницы</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css" integrity="sha512-ISS7cAi1PEhQ8jnbJpJZMd29NlhNj4AWYyLOSp2CE/CsHxTCu+r+t0D2yoJudVrd0/8fTVPUVDzY5Tvli75u/g==" crossorigin="anonymous">
+  <link rel="stylesheet" href="/src.e31bb0bc.css"></head>
+  <body>
+    <!-- Так добавляются фрагменты в главные HTML-файлы страниц. -->
+    
+<div class="container">
+  <input class="search" type="text">
+  <div class="location">
+    <h1 class="location-timezone">Timezone</h1>
+
+    <canvas id="icon1" width="128" height="128"></canvas>
+  </div>
+  <div class="temperature">
+    <div class="digree-box">
+      <h2 class="temperature-degree">20</h2>
+      <span>&deg;C</span>
+    </div>
+    <img class="icon" src="#" alt="weather icon" width="50px" height="50px">
+    <span class="temperature-description">cold</span>
+  </div>
+  <div class="date-container date">
+    <div class="date__day"></div>
+    <div class="date__month-time">
+      <p class="date__month"></p>
+      <p class="date__time"></p>
+    </div>
+    <div class="date__sun">
+      <div class="date__sunrise">
+        <!-- <img class="date__sunrise--icon" src="./img/sunrise.png" alt="" /> -->
+        <p class="date__sunrise--time"></p>
+      </div>
+      <div class="date__sunset">
+        <!-- <img class="date__sunset--icon" src="./img/sunset.png" alt="" /> -->
+        <p class="date__sunset--time"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Скрипт идёт последним в разметке. В нём уже подключен главный SASS-файл. -->
+    <script src="/src.e31bb0bc.js"></script>
+  </body>
+</html>
