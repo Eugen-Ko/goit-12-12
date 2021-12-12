@@ -2305,26 +2305,62 @@ const getWeatherByCoords = async (lat, lon) => {
 };
 
 exports.getWeatherByCoords = getWeatherByCoords;
-},{"axios":"../node_modules/axios/index.js"}],"index.js":[function(require,module,exports) {
+},{"axios":"../node_modules/axios/index.js"}],"js/getRefs.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getRefs = void 0;
+
+const getRefs = () => {
+  return {
+    temperDegree: document.querySelector('.temperature-degree'),
+    locationTimeZone: document.querySelector('.location-timezone'),
+    weatherDescr: document.querySelector('.temperature-description'),
+    weatherIcon: document.querySelector('.icon')
+  };
+};
+
+exports.getRefs = getRefs;
+},{}],"index.js":[function(require,module,exports) {
 "use strict";
 
 require("./sass/main.scss");
 
 var _getWeatherByCoords = require("./js/getWeatherByCoords");
 
+var _getRefs = require("./js/getRefs");
+
+const refs = (0, _getRefs.getRefs)();
+refs.temperDegree;
 let long = 0;
 let lat = 0;
 
+function setTextContent(weather, name, main) {
+  refs.temperDegree.textContent = Math.round(main.temp);
+  refs.locationTimeZone.textContent = name;
+  refs.weatherDescr.textContent = weather[0].main;
+  refs.weatherIcon.src = `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
+}
+
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(position => {
-    console.log(position);
     long = position.coords.longitude;
     lat = position.coords.latitude;
-    (0, _getWeatherByCoords.getWeatherByCoords)(lat, long).then(data => console.log(data));
-    console.log(`lat ${lat}`, `long ${long}`);
+    (0, _getWeatherByCoords.getWeatherByCoords)(lat, long).then(({
+      data
+    }) => {
+      const {
+        weather,
+        main,
+        name
+      } = data;
+      setTextContent(weather, name, main);
+    });
   });
 }
-},{"./sass/main.scss":"sass/main.scss","./js/getWeatherByCoords":"js/getWeatherByCoords.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./sass/main.scss":"sass/main.scss","./js/getWeatherByCoords":"js/getWeatherByCoords.js","./js/getRefs":"js/getRefs.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -2352,7 +2388,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58400" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41549" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
