@@ -2297,10 +2297,9 @@ var _axios = _interopRequireDefault(require("axios"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_axios.default.defaults.baseURL = 'https://api.openweathermap.org';
-
+// axios.defaults.baseURL = 'https://api.openweathermap.org';
 const getWeatherByCoords = async (lat, lon) => {
-  const URL = `/data/2.5/weather?lat=${lat}&lon=${lon}&appid=5c8dab899c73e9fec8517804e94f0209&units=metric`;
+  const URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=5c8dab899c73e9fec8517804e94f0209&units=metric`;
   return await (0, _axios.default)(URL);
 };
 
@@ -2323,7 +2322,46 @@ const getRefs = () => {
 };
 
 exports.getRefs = getRefs;
-},{}],"index.js":[function(require,module,exports) {
+},{}],"js/getPositionByCords.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getPositionByCoords = void 0;
+
+var _axios = _interopRequireDefault(require("axios"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// axios.defaults.baseURL = 'https://api.openweathermap.org';
+const getPositionByCoords = async (lat, long) => {
+  const apiKey = 'd4683b09d0c94ec0aebf0b2e043decbf';
+  const urlPosition = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${long}&key=${apiKey}&language=en`;
+  return await (0, _axios.default)(urlPosition);
+};
+
+exports.getPositionByCoords = getPositionByCoords;
+},{"axios":"../node_modules/axios/index.js"}],"js/searchImageByPlace.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.searcheImageByPlace = void 0;
+
+var _axios = _interopRequireDefault(require("axios"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// axios.defaults.baseURL = 'https://api.openweathermap.org';
+const searcheImageByPlace = async place => {
+  const url = `https://pixabay.com/api/?image_type=backgrounds&orientation=horizontal&q=${place}&per_page=20&key=4823621-792051e21e56534e6ae2e472`;
+  return await (0, _axios.default)(url);
+};
+
+exports.searcheImageByPlace = searcheImageByPlace;
+},{"axios":"../node_modules/axios/index.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 require("./sass/main.scss");
@@ -2331,6 +2369,10 @@ require("./sass/main.scss");
 var _getWeatherByCoords = require("./js/getWeatherByCoords");
 
 var _getRefs = require("./js/getRefs");
+
+var _getPositionByCords = require("./js/getPositionByCords");
+
+var _searchImageByPlace = require("./js/searchImageByPlace");
 
 const refs = (0, _getRefs.getRefs)();
 refs.temperDegree;
@@ -2358,9 +2400,31 @@ if (navigator.geolocation) {
       } = data;
       setTextContent(weather, name, main);
     });
+    (0, _getPositionByCords.getPositionByCoords)(lat, long).then(({
+      data
+    }) => {
+      const places = data.results[0].components.city;
+      console.log(places);
+      (0, _searchImageByPlace.searcheImageByPlace)(places).then(setBackgraund);
+    });
   });
 }
-},{"./sass/main.scss":"sass/main.scss","./js/getWeatherByCoords":"js/getWeatherByCoords.js","./js/getRefs":"js/getRefs.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+function setBackgraund({
+  data
+}) {
+  console.log(data);
+
+  const randomIntegerFromInterval = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
+
+  const randomImg = randomIntegerFromInterval(0, data.hits.length - 1);
+  document.body.style = `background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9)),
+  url('${data.hits[randomImg].largeImageURL}') center fixed; background-size: cover;`;
+  console.log(randomImg);
+}
+},{"./sass/main.scss":"sass/main.scss","./js/getWeatherByCoords":"js/getWeatherByCoords.js","./js/getRefs":"js/getRefs.js","./js/getPositionByCords":"js/getPositionByCords.js","./js/searchImageByPlace":"js/searchImageByPlace.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -2388,7 +2452,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41549" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50304" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
