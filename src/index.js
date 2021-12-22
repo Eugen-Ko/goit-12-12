@@ -1,5 +1,4 @@
 import './sass/main.scss';
-import './js/getWeatherByCoords';
 import { getWeatherByCoords } from './js/getWeatherByCoords'
 import { getRefs } from './js/getRefs'
 import { getPositionByCoords } from './js/getPositionByCords'
@@ -8,7 +7,7 @@ import { searcheImageByPlace } from './js/searchImageByPlace';
 
 
 const refs = getRefs()
-refs.temperDegree
+// refs.temperDegree
 let long = 0;
 let lat = 0;
 function setTextContent(weather, name, main) {

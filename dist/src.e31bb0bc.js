@@ -2297,10 +2297,9 @@ var _axios = _interopRequireDefault(require("axios"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// axios.defaults.baseURL = 'https://api.openweathermap.org';
 const getWeatherByCoords = async (lat, lon) => {
   const URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=5c8dab899c73e9fec8517804e94f0209&units=metric`;
-  return await (0, _axios.default)(URL);
+  return (0, _axios.default)(URL);
 };
 
 exports.getWeatherByCoords = getWeatherByCoords;
@@ -2374,8 +2373,8 @@ var _getPositionByCords = require("./js/getPositionByCords");
 
 var _searchImageByPlace = require("./js/searchImageByPlace");
 
-const refs = (0, _getRefs.getRefs)();
-refs.temperDegree;
+const refs = (0, _getRefs.getRefs)(); // refs.temperDegree
+
 let long = 0;
 let lat = 0;
 
@@ -2452,7 +2451,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "18141" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "31328" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
