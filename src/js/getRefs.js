@@ -4,5 +4,6 @@ export const getRefs = () => {
         locationTimeZone: document.querySelector('.location-timezone'),
         weatherDescr: document.querySelector('.temperature-description'),
         weatherIcon: document.querySelector('.icon'),
+        searchInput: document.querySelector('.search')
     }
 } 

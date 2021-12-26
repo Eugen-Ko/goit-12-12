@@ -3,7 +3,7 @@ import { getWeatherByCoords } from './js/getWeatherByCoords'
 import { getRefs } from './js/getRefs'
 import { getPositionByCoords } from './js/getPositionByCords'
 import { searcheImageByPlace } from './js/searchImageByPlace';
-
+import "./js/pagination"
 
 
 const refs = getRefs()
