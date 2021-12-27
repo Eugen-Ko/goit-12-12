@@ -5573,7 +5573,6 @@ const options = {
   page: 1
 };
 const pagination = new _tuiPagination.default('#tui-pagination-container', options);
-console.dir(pagination);
 const page = pagination.getCurrentPage();
 fetchImages(page).then(({
   images,
@@ -5682,7 +5681,14 @@ if (navigator.geolocation) {
     (0, _getPositionByCords.getPositionByCoords)(lat, long).then(({
       data
     }) => {
-      const places = data.results[0].components.city;
+      let places = data.results[0].components.city;
+      console.log(data.results[0]);
+      console.log(places.split(" "));
+
+      if (places.length > 1) {
+        places = places.split(" ")[0];
+      }
+
       console.log(places);
       (0, _searchImageByPlace.searcheImageByPlace)(places).then(setBackgraund);
     });
@@ -5731,7 +5737,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42203" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36711" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -33,9 +33,14 @@ if (navigator.geolocation) {
        });
   
     getPositionByCoords(lat, long).then(({ data }) => {
-      const places = data.results[0].components.city
-      console.log(places)
-
+      let places = data.results[0].components.city
+      console.log(data.results[0])
+      console.log(places.split(" "));
+      if (places.length > 1) {
+        places = places.split(" ")[0]
+        
+      }
+      console.log(places);
       searcheImageByPlace(places).then(setBackgraund)
     })
 
