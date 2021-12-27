@@ -9,7 +9,7 @@ const options = {
       page: 1,
 }
 const pagination = new Pagination('#tui-pagination-container', options);
-console.dir(pagination);
+
 const page = pagination.getCurrentPage()
 fetchImages(page).then(({ images, total }) => { pagination.reset(total);renderImages(images)})
 function fetchImages(page) {
